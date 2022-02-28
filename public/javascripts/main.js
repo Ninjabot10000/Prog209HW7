@@ -1,9 +1,10 @@
 
  let gameArray = [];
- let selectedType = "";
 
+// let selectedType = "";
 
-let GameObject = function (pTitle, pYear, pCreator) {
+//Changed GameObject to VideoGame
+let VideoGame = function (pTitle, pYear, pCreator) {
     this.title = pTitle;
     this.year = pYear;
     this.creator = pCreator;
@@ -23,39 +24,48 @@ $.get("/getAllVideoGames", function(data, status){  // AJAX get
 
     });
 
+    // !!
+    // buttonAdd has been CHANGED to newGame
+    // !!
 
-    document.getElementById("buttonAdd").addEventListener("click", function () {
+     document.getElementById("newGame").addEventListener("click", function () {
  
-        gameArray.push(new GameObject(document.getElementById("title").value, document.getElementById("year").value, document.getElementById("creator")));
-        //console.log(gameArray);
+        gameArray.push(new VideoGame(document.getElementById("title").value, document.getElementById("year").value, document.getElementById("creator")));
+         console.log(gameArray);
  
-         document.getElementById("title").value = "";
-         document.getElementById("year").value = "";
+          document.getElementById("title").value = "";
+          document.getElementById("year").value = "";
          document.getElementById("creator").value = "";
         
         
-    });
+     });
+    //this is much better 
+    // $(document).on('pagebeforeshow', '#add', function () {
+    //     document.getElementById("title").value = ""; 
+    //     document.getElementById("detail").value = ""; 
+    //     document.getElementById("priority").value  = ""; 
+    // }
+    // ); 
+
     // add a button event for adding new notes on Add page
-    document.getElementById("newNote").addEventListener("click", function () {
+    document.getElementById("newGame").addEventListener("click", function () {
         // use constructor, build new object and put it in array
         //
-        let newNote =  new Note( document.getElementById("title").value, 
-        document.getElementById("detail").value,
-        document.getElementById("priority").value  );
+        let newGame  =  new VideoGame ( 
+        document.getElementById("title").value, 
+        document.getElementById("year").value,
+        document.getElementById("creator").value);
 
-
+            
         $.ajax({
-            url : "/AddNote",
+            url : "/#add",
             type: "POST",
-            data: JSON.stringify(newNote),
+            data: JSON.stringify(newGame),
             contentType: "application/json; charset=utf-8",
 
             success: function (result) {
-                alert(result);
-            },
-            error: function(XMLHttpRequest, textStatus, errorThrown) { 
-                alert("Status: " + textStatus); alert("Error: " + errorThrown); 
-            }    
+                console.log(result);
+            }, 
         });
     })
     

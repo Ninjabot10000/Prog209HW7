@@ -3,8 +3,8 @@ var router = express.Router();
 
 let ServerGameArray = [];
 
-
-let GameObject = function (pTitle, pYear, pCreator) {
+// Changed GameObject to VideoGame
+let VideoGame = function (pTitle, pYear, pCreator) {
     this.title = pTitle;
     this.year = pYear;
     this.creator = pCreator;
@@ -12,12 +12,12 @@ let GameObject = function (pTitle, pYear, pCreator) {
 
 //A very real game with a very real creator
 // Also planning to remove year and creator with something else
-ServerGameArray.push(new GameObject("A real game", "2022", "A real creator"));
-ServerGameArray.push(new GameObject("Something creative", "2014", "A gamer"));
-ServerGameArray.push(new GameObject("Play vid game", "2018", "Someone"));
+ServerGameArray.push(new VideoGame("A real game", "2022", "A real creator"));
+ServerGameArray.push(new VideoGame("Something creative", "2014", "A gamer"));
+ServerGameArray.push(new VideoGame("Play vid game", "2018", "Someone"));
 
 
-console.log(gameArray);
+console.log(ServerGameArray);
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -33,9 +33,9 @@ router.get('/getAllVideoGames', function(req, res) {
 
 //add a video game
 router.post('/#add', function(req, res) {
-  const newVideoGame = req.body;  // get object from req object sent from browser
-  console.log(newVideoGame);
-  ServerGameArray.push(newVideoGame); //adds to the array  
+  const newGame = req.body;  // get object from req object sent from browser
+  console.log(newGame);
+  ServerGameArray.push(newGame); //adds to the array  
   
   //prepares a reply to the browser
   var response = {
