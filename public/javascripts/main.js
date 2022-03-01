@@ -10,6 +10,12 @@ let VideoGame = function (pTitle, pYear, pCreator) {
     this.creator = pCreator;
     //this.playtime = 0;
 }
+//PLAN FOR ADDING PLAYTIME
+//Adding the inital playtime counter will be with the other inputs
+//UPDATING the playtime can possibly be on the List all video games when clicked on a specific game
+
+
+
 
 // //A very real game with a very real creator
 // // Also planning to remove year and creator with something else
