@@ -8,6 +8,7 @@ let VideoGame = function (pTitle, pYear, pCreator) {
     this.title = pTitle;
     this.year = pYear;
     this.creator = pCreator;
+    //this.playtime = 0;
 }
 
 // //A very real game with a very real creator
@@ -18,47 +19,17 @@ let VideoGame = function (pTitle, pYear, pCreator) {
 //  console.log(gameArray);
 
 document.addEventListener("DOMContentLoaded", function (event) {
-$.get("/getAllVideoGames", function(data, status){  // AJAX get
-    gameArray = data;  // put the returned server json data into our local array
-
-
-    });
-
-    // !!
-    // buttonAdd has been CHANGED to newGame
-    // !!
-
-     document.getElementById("newGame").addEventListener("click", function () {
- 
-        gameArray.push(new VideoGame(document.getElementById("title").value, document.getElementById("year").value, document.getElementById("creator")));
-         console.log(gameArray);
- 
-          document.getElementById("title").value = "";
-          document.getElementById("year").value = "";
-         document.getElementById("creator").value = "";
-        
-        
-     });
-    //this is much better 
-    // $(document).on('pagebeforeshow', '#add', function () {
-    //     document.getElementById("title").value = ""; 
-    //     document.getElementById("detail").value = ""; 
-    //     document.getElementById("priority").value  = ""; 
-    // }
-    // ); 
-
-    // add a button event for adding new notes on Add page
     document.getElementById("newGame").addEventListener("click", function () {
         // use constructor, build new object and put it in array
         //
-        let newGame  =  new VideoGame ( 
+        let newGame = new VideoGame ( 
         document.getElementById("title").value, 
         document.getElementById("year").value,
         document.getElementById("creator").value);
 
             
         $.ajax({
-            url : "/#add",
+            url : "/add",
             type: "POST",
             data: JSON.stringify(newGame),
             contentType: "application/json; charset=utf-8",
@@ -68,6 +39,28 @@ $.get("/getAllVideoGames", function(data, status){  // AJAX get
             }, 
         });
     })
+
+$.get("/getAllVideoGames", function(data, status){  // AJAX get
+    gameArray = data;  // put the returned server json data into our local array
+
+    });
+
+    // !!
+    // buttonAdd has been CHANGED to newGame
+    // !!
+
+    //  document.getElementById("newGame").addEventListener("click", function () {
+ 
+    //     let newGame = new VideoGame(document.getElementById("title").value, document.getElementById("year").value, document.getElementById("creator"));
+    //      console.log(gameArray);
+ 
+    //       document.getElementById("title").value = "";
+    //       document.getElementById("year").value = "";
+    //      document.getElementById("creator").value = "";
+        
+        
+    //  });
+     
     
  });
 

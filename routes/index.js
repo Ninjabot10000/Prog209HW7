@@ -32,7 +32,7 @@ router.get('/getAllVideoGames', function(req, res) {
 });
 
 //add a video game
-router.post('/#add', function(req, res) {
+router.post('/add', function(req, res) {
   const newGame = req.body;  // get object from req object sent from browser
   console.log(newGame);
   ServerGameArray.push(newGame); //adds to the array  
