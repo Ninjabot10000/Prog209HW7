@@ -44,6 +44,11 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 console.log(result);
             }, 
         });
+
+        //Clearing data that was inputted
+        document.getElementById("title").value = "";
+        document.getElementById("year").value = "";
+        document.getElementById("creator").value = "";
     })
 
 $.get("/getAllVideoGames", function(data, status){  // AJAX get
