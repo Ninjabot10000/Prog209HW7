@@ -50,12 +50,14 @@ document.addEventListener("DOMContentLoaded", function (event) {
         document.getElementById("year").value = "";
         document.getElementById("creator").value = "";
     })
+    
+    $(document).on('pagebeforeshow', '#home', function () {
+        $.get("/getAllVideoGames", function(data, status){  // AJAX get
+            gameArray = data;  // put the returned server json data into our local array
 
-$.get("/getAllVideoGames", function(data, status){  // AJAX get
-    gameArray = data;  // put the returned server json data into our local array
 
+        });
     });
-
     // !!
     // buttonAdd has been CHANGED to newGame
     // !!
